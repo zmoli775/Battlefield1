@@ -19,4 +19,11 @@ public class ServerItem
     public bool IsCustom { get; set; }
     public bool IsOfficial { get; set; }
     public int TickRate { get; set; }
+
+    public string Team1Image { get; set; }
+    public string Team1Key { get; set; }
+    public string Team1Name { get; set; }
+    public string Team2Image { get; set; }
+    public string Team2Key { get; set; }
+    public string Team2Name { get; set; }
 }

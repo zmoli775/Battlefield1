@@ -6,6 +6,7 @@
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Global.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Converter.xaml" />
 
+        <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Image.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/ScrollViewer.xaml" />
 
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/NavMenu.xaml" />

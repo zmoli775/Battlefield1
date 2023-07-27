@@ -1,4 +1,4 @@
-﻿using Battlefield1.Utils;
+﻿using Battlefield1.Helpers;
 
 namespace Battlefield1;
 
@@ -19,7 +19,7 @@ public partial class MainWindow : Window
     {
         Task.Run(() =>
         {
-            ChsUtil.PreHeat();
+            ChsHelper.PreHeat();
         });
     }
 

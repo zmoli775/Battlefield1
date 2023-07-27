@@ -1,4 +1,4 @@
-﻿namespace Battlefield1.API;
+﻿namespace Battlefield1.Helpers;
 
 public static class JsonHelper
 {

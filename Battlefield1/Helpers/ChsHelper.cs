@@ -1,8 +1,8 @@
 ﻿using Chinese;
 
-namespace Battlefield1.Utils;
+namespace Battlefield1.Helpers;
 
-public static class ChsUtil
+public static class ChsHelper
 {
     /// <summary>
     /// 预热简繁库

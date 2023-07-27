@@ -1,6 +1,9 @@
 ﻿using Battlefield1.API;
+using Battlefield1.API.Response;
 using Battlefield1.Data;
 using Battlefield1.Utils;
+using Battlefield1.Helpers;
+using Battlefield1.Windows;
 
 namespace Battlefield1.Views;
 
@@ -9,9 +12,6 @@ namespace Battlefield1.Views;
 /// </summary>
 public partial class ServerView : UserControl
 {
-    /// <summary>
-    /// 动态集合
-    /// </summary>
     public ObservableCollection<ServerItem> ServerItems { get; set; } = new();
 
     public ServerView()
@@ -21,10 +21,26 @@ public partial class ServerView : UserControl
 
     private void Button_SearchServers_Click(object sender, RoutedEventArgs e)
     {
-        SearchServers();
+        if (sender as Button is var button)
+        {
+            SearchServers(button.Tag as string);
+        }
     }
 
-    private async void SearchServers()
+    private void ListBox_SearchServers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var index = ListBox_SearchServers.SelectedIndex;
+        if (index == -1)
+            return;
+
+        var serverItem = ServerItems[index];
+        var playerWindow = new PlayerWindow(serverItem);
+        playerWindow.Show();
+
+        ListBox_SearchServers.SelectedIndex = -1;
+    }
+
+    private async void SearchServers(string region)
     {
         ServerItems.Clear();
 
@@ -32,40 +48,50 @@ public partial class ServerView : UserControl
 
         var gameModes = GetGameModesString();
         var gameSlots = GetGameSlotsString();
-        var gameRegions = GetGameRegionsString();
 
-        var servers = await GameTools.GetServers(name, gameModes, gameSlots);
-        if (servers != null)
+        var result = await GameTools.GetServers(name, region, gameModes, gameSlots);
+        if (result == null)
         {
-            servers.servers = servers.servers.OrderByDescending(s => s.playerAmount).ThenByDescending(s => s.inQue).ToList();
+            return;
+        }
 
-            var index = 0;
-            foreach (var item in servers.servers)
+        var servers = JsonHelper.JsonDeserialize<Servers>(result);
+
+        servers.servers = servers.servers.OrderByDescending(s => s.playerAmount).ThenByDescending(s => s.inQue).ToList();
+
+        var index = 0;
+        foreach (var item in servers.servers)
+        {
+            this.Dispatcher.Invoke(DispatcherPriority.Background, () =>
             {
-                this.Dispatcher.Invoke(DispatcherPriority.Background, () =>
+                ServerItems.Add(new()
                 {
-                    ServerItems.Add(new()
-                    {
-                        Index = ++index,
-                        GameId = item.gameId,
-                        Guid = item.serverId,
-                        Region = item.region,
-                        RegionImage = ServerUtil.GetServerRegionImage(item.region),
-                        Name = item.prefix,
-                        Description = ChsUtil.ToSimplified(item.description),
-                        Soldier = item.playerAmount,
-                        MaxSoldier = item.maxPlayers,
-                        Queue = item.inQue,
-                        Spectator = item.inSpectator,
-                        MapMode = ChsUtil.ToSimplified(item.mode),
-                        MapName = ChsUtil.ToSimplified(item.currentMap),
-                        MapImage = ServerUtil.GetServerMapImageSmall(item.url),
-                        IsCustom = item.isCustom,
-                        IsOfficial = item.official,
-                        TickRate = 60,
-                    });
+                    Index = ++index,
+                    GameId = item.gameId,
+                    Guid = item.serverId,
+                    Region = item.region,
+                    RegionImage = ClientUtil.GetServerRegionImage(item.region),
+                    Name = item.prefix,
+                    Description = ChsHelper.ToSimplified(item.description),
+                    Soldier = item.playerAmount,
+                    MaxSoldier = item.maxPlayers,
+                    Queue = item.inQue,
+                    Spectator = item.inSpectator,
+                    MapMode = ChsHelper.ToSimplified(item.mode),
+                    MapName = ChsHelper.ToSimplified(item.currentMap),
+                    MapImage = ClientUtil.GetServerMapImageSmall(item.url),
+                    IsCustom = item.isCustom,
+                    IsOfficial = item.official,
+                    TickRate = 60,
+
+                    Team1Image = ClientUtil.GetServerFactionImage(item.teams.teamOne.key),
+                    Team1Key = item.teams.teamOne.key,
+                    Team1Name = item.teams.teamOne.name,
+                    Team2Image = ClientUtil.GetServerFactionImage(item.teams.teamTwo.key),
+                    Team2Key = item.teams.teamTwo.key,
+                    Team2Name = item.teams.teamTwo.name
                 });
-            }
+            });
         }
     }
 
@@ -115,27 +141,5 @@ public partial class ServerView : UserControl
             gameSlots.Add("Spectator");
 
         return string.Join(",", gameSlots);
-    }
-
-    private string GetGameRegionsString()
-    {
-        var gameRegions = new List<string>();
-
-        if (CheckBox_NAm.IsChecked == true)
-            gameRegions.Add("NAm");
-        if (CheckBox_SAm.IsChecked == true)
-            gameRegions.Add("SAm");
-        if (CheckBox_AC.IsChecked == true)
-            gameRegions.Add("AC");
-        if (CheckBox_Afr.IsChecked == true)
-            gameRegions.Add("Afr");
-        if (CheckBox_EU.IsChecked == true)
-            gameRegions.Add("EU");
-        if (CheckBox_Asia.IsChecked == true)
-            gameRegions.Add("Asia");
-        if (CheckBox_OC.IsChecked == true)
-            gameRegions.Add("OC");
-
-        return string.Join(",", gameRegions);
     }
 }

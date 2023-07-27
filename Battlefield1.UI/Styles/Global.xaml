@@ -17,7 +17,6 @@
     <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Background" Value="White" />
-        <Setter Property="Padding" Value="5" />
     </Style>
 
 </ResourceDictionary>
