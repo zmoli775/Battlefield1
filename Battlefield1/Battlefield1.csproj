@@ -1,0 +1,209 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net6.0-windows</TargetFramework>
+        <Nullable>disable</Nullable>
+        <UseWPF>true</UseWPF>
+        <Platforms>x64</Platforms>
+        <PlatformTarget>x64</PlatformTarget>
+        <StartupObject>Battlefield1.App</StartupObject>
+        <ApplicationIcon>Assets\Icons\Favicon.ico</ApplicationIcon>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+        <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+        <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+        <GenerateAssemblyVersionAttribute>false</GenerateAssemblyVersionAttribute>
+        <GenerateAssemblyFileVersionAttribute>false</GenerateAssemblyFileVersionAttribute>
+        <GenerateAssemblyInformationalVersionAttribute>false</GenerateAssemblyInformationalVersionAttribute>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+        <DebugType>full</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\Images\Map\mp_alps_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_alps_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_amiens_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_amiens_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_beachhead_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_beachhead_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_blitz_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_blitz_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_bridge_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_bridge_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_chateau_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_chateau_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_desert_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_desert_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_faofortress_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_faofortress_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_fields_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_fields_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_forest_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_forest_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_giant_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_giant_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_graveyard_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_graveyard_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_harbor_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_harbor_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_hell_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_hell_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_islands_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_islands_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_italiancoast_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_italiancoast_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_london_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_london_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_mountainfort_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_mountainfort_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_naval_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_naval_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_offensive_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_offensive_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_ravines_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_ravines_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_ridge_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_ridge_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_river_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_river_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_scar_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_scar_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_shoveltown_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_shoveltown_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_suez_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_suez_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_trench_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_trench_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_tsaritsyn_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_tsaritsyn_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_underworld_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_underworld_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_valley_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_valley_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_verdun_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_verdun_small.jpg" />
+      <None Remove="Assets\Images\Map\mp_volga_medium.jpg" />
+      <None Remove="Assets\Images\Map\mp_volga_small.jpg" />
+      <None Remove="Assets\Images\Region\afr.png" />
+      <None Remove="Assets\Images\Region\asia.png" />
+      <None Remove="Assets\Images\Region\eu.png" />
+      <None Remove="Assets\Images\Region\nam.png" />
+      <None Remove="Assets\Images\Region\oc.png" />
+      <None Remove="Assets\Images\Region\sam.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Assets\Fonts\" />
+        <Folder Include="Models\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Chinese" Version="0.5.0" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
+        <PackageReference Include="RestSharp" Version="110.2.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Battlefield1.API\Battlefield1.API.csproj" />
+        <ProjectReference Include="..\Battlefield1.UI\Battlefield1.UI.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Resource Include="Assets\Icons\Cursor.cur" />
+        <Resource Include="Assets\Icons\Favicon.ico" />
+        <Resource Include="Assets\Images\BGLoop\MP_Beachhead.jpg" />
+        <Resource Include="Assets\Images\BGLoop\MP_Harbor.jpg" />
+        <Resource Include="Assets\Images\BGLoop\MP_Naval.jpg" />
+        <Resource Include="Assets\Images\BGLoop\MP_Ridge.jpg" />
+        <Resource Include="Assets\Images\Map\mp_alps_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_alps_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_amiens_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_amiens_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_beachhead_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_beachhead_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_blitz_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_blitz_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_bridge_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_bridge_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_chateau_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_chateau_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_desert_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_desert_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_faofortress_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_faofortress_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_fields_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_fields_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_forest_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_forest_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_giant_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_giant_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_graveyard_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_graveyard_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_harbor_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_harbor_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_hell_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_hell_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_islands_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_islands_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_italiancoast_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_italiancoast_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_london_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_london_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_mountainfort_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_mountainfort_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_naval_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_naval_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_offensive_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_offensive_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_ravines_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_ravines_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_ridge_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_ridge_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_river_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_river_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_scar_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_scar_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_shoveltown_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_shoveltown_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_suez_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_suez_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_trench_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_trench_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_tsaritsyn_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_tsaritsyn_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_underworld_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_underworld_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_valley_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_valley_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_verdun_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_verdun_small.jpg" />
+        <Resource Include="Assets\Images\Map\mp_volga_medium.jpg" />
+        <Resource Include="Assets\Images\Map\mp_volga_small.jpg" />
+        <Resource Include="Assets\Images\Menu\menu-icon-bf1.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-bf4.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-bfh.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-bfv.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-help.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-news.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-platoons.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-player.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-quit.png" />
+        <Resource Include="Assets\Images\Menu\menu-icon-video.png" />
+        <Resource Include="Assets\Images\Region\afr.png" />
+        <Resource Include="Assets\Images\Region\asia.png" />
+        <Resource Include="Assets\Images\Region\eu.png" />
+        <Resource Include="Assets\Images\Region\nam.png" />
+        <Resource Include="Assets\Images\Region\oc.png" />
+        <Resource Include="Assets\Images\Region\sam.png" />
+    </ItemGroup>
+
+</Project>

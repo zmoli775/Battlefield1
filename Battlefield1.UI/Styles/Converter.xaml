@@ -1,0 +1,10 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvt="clr-namespace:Battlefield1.UI.Converters">
+
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <cvt:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
+    <cvt:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+
+</ResourceDictionary>

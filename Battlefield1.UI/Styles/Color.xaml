@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="Bf1LineColor" Color="#19FFFFFF" />
+    <SolidColorBrush x:Key="Bf1BorderColor" Color="#4CFFFFFF" />
+
+    <SolidColorBrush x:Key="Bf1YellowColor" Color="#FF9900" />
+
+</ResourceDictionary>

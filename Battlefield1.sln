@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlefield1", "Battlefield1\Battlefield1.csproj", "{EE8A0E6A-2F35-40EC-A510-ECE85B6D18D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battlefield1.UI", "Battlefield1.UI\Battlefield1.UI.csproj", "{78CDB4F5-A655-4A8B-9C8C-78CC7482D770}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battlefield1.API", "Battlefield1.API\Battlefield1.API.csproj", "{28B2D0B9-2BD9-479F-88FB-7D4CF84655D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EE8A0E6A-2F35-40EC-A510-ECE85B6D18D1}.Debug|x64.ActiveCfg = Debug|x64
+		{EE8A0E6A-2F35-40EC-A510-ECE85B6D18D1}.Debug|x64.Build.0 = Debug|x64
+		{EE8A0E6A-2F35-40EC-A510-ECE85B6D18D1}.Release|x64.ActiveCfg = Release|x64
+		{EE8A0E6A-2F35-40EC-A510-ECE85B6D18D1}.Release|x64.Build.0 = Release|x64
+		{78CDB4F5-A655-4A8B-9C8C-78CC7482D770}.Debug|x64.ActiveCfg = Debug|x64
+		{78CDB4F5-A655-4A8B-9C8C-78CC7482D770}.Debug|x64.Build.0 = Debug|x64
+		{78CDB4F5-A655-4A8B-9C8C-78CC7482D770}.Release|x64.ActiveCfg = Release|x64
+		{78CDB4F5-A655-4A8B-9C8C-78CC7482D770}.Release|x64.Build.0 = Release|x64
+		{28B2D0B9-2BD9-479F-88FB-7D4CF84655D8}.Debug|x64.ActiveCfg = Debug|x64
+		{28B2D0B9-2BD9-479F-88FB-7D4CF84655D8}.Debug|x64.Build.0 = Debug|x64
+		{28B2D0B9-2BD9-479F-88FB-7D4CF84655D8}.Release|x64.ActiveCfg = Release|x64
+		{28B2D0B9-2BD9-479F-88FB-7D4CF84655D8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C539B49E-EE1E-45C0-A9D3-851FEB0AAE73}
+	EndGlobalSection
+EndGlobal
