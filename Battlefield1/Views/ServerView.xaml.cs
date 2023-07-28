@@ -21,10 +21,7 @@ public partial class ServerView : UserControl
 
     private void Button_SearchServers_Click(object sender, RoutedEventArgs e)
     {
-        if (sender as Button is var button)
-        {
-            SearchServers(button.Tag as string);
-        }
+        SearchServers();
     }
 
     private void ListBox_SearchServers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -40,23 +37,35 @@ public partial class ServerView : UserControl
         ListBox_SearchServers.SelectedIndex = -1;
     }
 
-    private async void SearchServers(string region)
+    private async void SearchServers()
     {
         ServerItems.Clear();
+
+        LoadingSpinner_Search.IsLoading = true;
+        TextBlock_SearchResult.Visibility = Visibility.Hidden;
+
+        ///////////////////////////////////////////////////
 
         var name = TextBox_ServerName.Text.Trim();
 
         var gameModes = GetGameModesString();
         var gameSlots = GetGameSlotsString();
+        var gameRegions = GetGameRegionsString();
 
-        var result = await GameTools.GetServers(name, region, gameModes, gameSlots);
+        var result = await GameTools.GetServers(name, gameRegions, gameModes, gameSlots);
         if (result == null)
         {
+            LoadingSpinner_Search.IsLoading = false;
+            TextBlock_SearchResult.Visibility = Visibility.Visible;
+            TextBlock_SearchResult.Text = "未找到搜索结果或搜索失败，请重试";
             return;
         }
 
-        var servers = JsonHelper.JsonDeserialize<Servers>(result);
+        LoadingSpinner_Search.IsLoading = false;
 
+        ///////////////////////////////////////////////////
+
+        var servers = JsonHelper.JsonDeserialize<Servers>(result);
         servers.servers = servers.servers.OrderByDescending(s => s.playerAmount).ThenByDescending(s => s.inQue).ToList();
 
         var index = 0;
@@ -141,5 +150,27 @@ public partial class ServerView : UserControl
             gameSlots.Add("Spectator");
 
         return string.Join(",", gameSlots);
+    }
+
+    private string GetGameRegionsString()
+    {
+        var gameRegions = new List<string>();
+
+        if (CheckBox_NAm.IsChecked == true)
+            gameRegions.Add("NAm");
+        if (CheckBox_SAm.IsChecked == true)
+            gameRegions.Add("SAm");
+        if (CheckBox_AC.IsChecked == true)
+            gameRegions.Add("AC");
+        if (CheckBox_Afr.IsChecked == true)
+            gameRegions.Add("Afr");
+        if (CheckBox_EU.IsChecked == true)
+            gameRegions.Add("EU");
+        if (CheckBox_Asia.IsChecked == true)
+            gameRegions.Add("Asia");
+        if (CheckBox_OC.IsChecked == true)
+            gameRegions.Add("OC");
+
+        return string.Join(",", gameRegions);
     }
 }

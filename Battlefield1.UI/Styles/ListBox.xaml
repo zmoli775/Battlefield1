@@ -70,29 +70,29 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <!--  服务器当前地图图片  -->
-                            <Grid Grid.Column="0" Margin="2,0,0,0">
-                                <Image
-                                    Height="76"
-                                    VerticalAlignment="Center"
-                                    Source="{Binding MapImage, Converter={StaticResource StringToImageSourceConverter}}" />
-                                <!--  索引  -->
-                                <Grid
-                                    Margin="0,0,0,2"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Bottom">
-                                    <Border Background="#000" Opacity="0.5">
-                                        <TextBlock
-                                            Margin="3"
-                                            Opacity="0"
-                                            Text="{Binding Index}" />
-                                    </Border>
+                            <Border
+                                Grid.Column="0"
+                                Width="110"
+                                Height="70"
+                                Margin="5,0,0,0">
+                                <Grid>
+                                    <Image Source="{Binding MapImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                                    <!--  索引  -->
                                     <TextBlock
                                         Margin="3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Bottom"
                                         Foreground="White"
-                                        Opacity="0.9"
+                                        Opacity="0.7"
                                         Text="{Binding Index}" />
                                 </Grid>
-                            </Grid>
+                                <Border.Effect>
+                                    <DropShadowEffect
+                                        BlurRadius="7"
+                                        ShadowDepth="0"
+                                        Color="#000" />
+                                </Border.Effect>
+                            </Border>
                             <!--  服务器信息  -->
                             <StackPanel
                                 Grid.Column="1"
@@ -131,11 +131,16 @@
                                 <StackPanel Orientation="Horizontal">
                                     <!--  服务器地区 日服  -->
                                     <Border
+                                        Width="20"
                                         Height="14"
-                                        BorderBrush="Gray"
-                                        BorderThickness="1"
                                         SnapsToDevicePixels="True">
                                         <Image Source="{Binding RegionImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                                        <Border.Effect>
+                                            <DropShadowEffect
+                                                BlurRadius="3"
+                                                ShadowDepth="0"
+                                                Color="#000" />
+                                        </Border.Effect>
                                     </Border>
                                     <!--  服务器其他信息  -->
                                     <TextBlock Margin="10,0,0,0">
@@ -153,7 +158,7 @@
                                     <TextBlock Text="{Binding TickRate, StringFormat=' - {0}HZ'}" />
                                     <TextBlock
                                         Margin="10,0,0,0"
-                                        Foreground="#FFDC00"
+                                        Foreground="#02A0E2"
                                         Text="[官服]"
                                         Visibility="{Binding IsOfficial, Converter={StaticResource BooleanToVisibilityConverter}}" />
                                 </StackPanel>
@@ -181,6 +186,87 @@
                             </StackPanel>
                         </Grid>
                     </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="ListBoxStyle_ServerPlayers"
+        BasedOn="{StaticResource ListBoxStyle_Base}"
+        TargetType="{x:Type ListBox}">
+        <Setter Property="ItemTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Grid Margin="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Width="20"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Text="{Binding Index}"
+                                TextAlignment="Right" />
+                            <Image
+                                Width="24"
+                                Height="24"
+                                Margin="0,0,10,0"
+                                Source="{Binding RankImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                            <Border
+                                x:Name="rank"
+                                Width="34"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                BorderBrush="Gray"
+                                BorderThickness="1">
+                                <TextBlock
+                                    x:Name="rank1"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding Rank}"
+                                    TextAlignment="Center" />
+                            </Border>
+                            <TextBlock
+                                x:Name="name"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Text="{Binding Name}" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock
+                                Width="70"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Text="{Binding PlayTime, StringFormat='{}{0} 分钟'}"
+                                TextAlignment="Right" />
+                            <TextBlock
+                                Width="40"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                Text="{Binding Latency, StringFormat='{}{0} ms'}"
+                                TextAlignment="Right" />
+                        </StackPanel>
+                    </Grid>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Is100Plus}" Value="True">
+                            <Setter TargetName="rank" Property="BorderBrush" Value="#FF8F6B" />
+                            <Setter TargetName="rank" Property="Background" Value="#FF8F6B" />
+                            <Setter TargetName="rank1" Property="Foreground" Value="#000" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Is150}" Value="True">
+                            <Setter TargetName="rank" Property="BorderBrush" Value="#FED700" />
+                            <Setter TargetName="rank" Property="Background" Value="#FED700" />
+                            <Setter TargetName="rank1" Property="Foreground" Value="#000" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsVIP}" Value="True">
+                            <Setter TargetName="name" Property="Foreground" Value="#02A0E2" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                            <Setter TargetName="name" Property="Foreground" Value="#FF9900" />
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
                 </DataTemplate>
             </Setter.Value>
         </Setter>

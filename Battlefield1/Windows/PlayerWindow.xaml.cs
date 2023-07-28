@@ -1,7 +1,6 @@
 ﻿using Battlefield1.API;
 using Battlefield1.Data;
 using Battlefield1.Utils;
-using System.Security.Cryptography;
 
 namespace Battlefield1.Windows;
 
@@ -10,13 +9,16 @@ namespace Battlefield1.Windows;
 /// </summary>
 public partial class PlayerWindow : Window
 {
-    public List<PlayerItem> Team1Players { get; set; } = new();
-    public List<PlayerItem> Team2Players { get; set; } = new();
-
     public ObservableCollection<PlayerItem> Team1PlayerItems { get; set; } = new();
     public ObservableCollection<PlayerItem> Team2PlayerItems { get; set; } = new();
 
     private readonly ServerItem serverItem;
+
+    public readonly List<PlayerItem> Team1Players = new();
+    public readonly List<PlayerItem> Team2Players = new();
+
+    public readonly List<long> AdminList = new();
+    public readonly List<long> VIPList = new();
 
     public PlayerWindow(ServerItem serverItem)
     {
@@ -51,18 +53,26 @@ public partial class PlayerWindow : Window
 
         var ATTR = GAME["ATTR"];
         var admins = new StringBuilder();
-        admins.Append(ATTR["admins1"].GetValue<string>());
-        admins.Append(ATTR["admins2"].GetValue<string>());
-        admins.Append(ATTR["admins3"].GetValue<string>());
-        admins.Append(ATTR["admins4"].GetValue<string>());
+        admins.Append(ATTR["admins1"].GetValue<string>().Trim());
+        admins.Append(ATTR["admins2"].GetValue<string>().Trim());
+        admins.Append(ATTR["admins3"].GetValue<string>().Trim());
+        admins.Append(ATTR["admins4"].GetValue<string>().Trim());
         var vips = new StringBuilder();
-        vips.Append(ATTR["vips1"].GetValue<string>());
-        vips.Append(ATTR["vips2"].GetValue<string>());
-        vips.Append(ATTR["vips3"].GetValue<string>());
-        vips.Append(ATTR["vips4"].GetValue<string>());
+        vips.Append(ATTR["vips1"].GetValue<string>().Trim());
+        vips.Append(ATTR["vips2"].GetValue<string>().Trim());
+        vips.Append(ATTR["vips3"].GetValue<string>().Trim());
+        vips.Append(ATTR["vips4"].GetValue<string>().Trim());
 
-        var adminList = admins.ToString().Split(';').Select(x => Convert.ToInt64(x)).ToList();
-        var vipList = vips.ToString().Split(';').Select(x => Convert.ToInt64(x)).ToList();
+        admins.ToString().Split(';').ToList().ForEach(x =>
+        {
+            if (long.TryParse(x, out long pid))
+                AdminList.Add(pid);
+        });
+        vips.ToString().Split(';').ToList().ForEach(x =>
+        {
+            if (long.TryParse(x, out long pid))
+                VIPList.Add(pid);
+        });
 
         if (PROS is JsonArray pros)
         {
@@ -75,11 +85,17 @@ public partial class PlayerWindow : Window
                 var name = pro["NAME"].GetValue<string>();
                 var playTime = pro["TIME"].GetValue<long>();
 
-                var rank = 0;
-                if (pro["PATT"]["rank"] != null && int.TryParse(pro["PATT"]["rank"].GetValue<string>(), out int tempRank))
-                    rank = tempRank;
+                var PATT = pro["PATT"];
+                var rank = -1;
+                var latency = -1;
+                if (PATT != null)
+                {
+                    if (PATT["rank"] != null && int.TryParse(PATT["rank"].GetValue<string>(), out int tempRank))
+                        rank = tempRank;
 
-                var latency = pro["PATT"]["latency"].GetValue<string>();
+                    if (PATT["latency"] != null && int.TryParse(PATT["latency"].GetValue<string>(), out int tempLatency))
+                        latency = tempLatency;
+                }
 
                 if (teamId == 0)
                 {
@@ -109,13 +125,20 @@ public partial class PlayerWindow : Window
         }
 
         // 等级排序
-        Team1Players.Sort((a, b) => -a.Rank.CompareTo(b.Rank));
-        Team2Players.Sort((a, b) => -a.Rank.CompareTo(b.Rank));
+        Team1Players.Sort(PlayerComparison);
+        Team2Players.Sort(PlayerComparison);
 
+        // 更新UI
+        UpdateUI(Team1Players, Team1PlayerItems);
+        UpdateUI(Team2Players, Team2PlayerItems);
+    }
+
+    private void UpdateUI(List<PlayerItem> teamPlayers, ObservableCollection<PlayerItem> teamPlayerItems)
+    {
         var index = 0;
-        Team1Players.ForEach(player =>
+        teamPlayers.ForEach(player =>
         {
-            Team1PlayerItems.Add(new()
+            teamPlayerItems.Add(new()
             {
                 Index = ++index,
                 PID = player.PID,
@@ -124,26 +147,28 @@ public partial class PlayerWindow : Window
                 Rank = player.Rank,
                 RankImage = ClientUtil.GetPlayerRankImage(player.Rank),
                 Latency = player.Latency,
-                IsAdmin = adminList.Contains(player.PID),
-                IsVIP = vipList.Contains(player.PID)
+                IsAdmin = AdminList.Contains(player.PID),
+                IsVIP = VIPList.Contains(player.PID),
+                Is100Plus = player.Rank >= 100,
+                Is150 = player.Rank == 150
             });
         });
+    }
 
-        index = 0;
-        Team2Players.ForEach(player =>
+    private int PlayerComparison(PlayerItem p1, PlayerItem p2)
+    {
+        if (p1.Rank != p2.Rank)
         {
-            Team2PlayerItems.Add(new()
-            {
-                Index = ++index,
-                PID = player.PID,
-                Name = player.Name,
-                PlayTime = PlayerUtil.GetPlayTimeMinute(player.PlayTime),
-                Rank = player.Rank,
-                RankImage = ClientUtil.GetPlayerRankImage(player.Rank),
-                Latency = player.Latency,
-                IsAdmin = adminList.Contains(player.PID),
-                IsVIP = vipList.Contains(player.PID)
-            });
-        });
+            return -p1.Rank.CompareTo(p2.Rank);
+        }
+        else if (p1.PlayTime != p2.PlayTime)
+        {
+            return p1.PlayTime.CompareTo(p2.PlayTime);
+        }
+        else if (p1.Latency != p2.Latency)
+        {
+            return p1.Latency.CompareTo(p2.Latency);
+        }
+        return 0;
     }
 }

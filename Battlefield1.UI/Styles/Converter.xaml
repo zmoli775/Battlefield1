@@ -6,5 +6,6 @@
     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <cvt:IsNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
     <cvt:StringToImageSourceConverter x:Key="StringToImageSourceConverter" />
+    <cvt:LoadingSpinnerConverter x:Key="LoadingSpinnerConverter" />
 
 </ResourceDictionary>

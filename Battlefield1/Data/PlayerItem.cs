@@ -8,10 +8,13 @@ public class PlayerItem
     public long PlayTime { get; set; }
     public int Rank { get; set; }
     public string RankImage { get; set; }
-    public string Latency { get; set; }
+    public int Latency { get; set; }
 
     public bool IsAdmin { get; set; }
     public bool IsVIP { get; set; }
+
+    public bool Is150 { get; set; }
+    public bool Is100Plus { get; set; }
 
     public float LifeKD { get; set; }
     public float LifeKPM { get; set; }

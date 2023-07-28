@@ -17,12 +17,28 @@
             <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <!--  左侧搜索结果  -->
-        <ListBox
-            x:Name="ListBox_SearchServers"
-            Margin="0,0,10,0"
-            ItemsSource="{Binding ServerItems}"
-            SelectionChanged="ListBox_SearchServers_SelectionChanged"
-            Style="{StaticResource ListBoxStyle_SearchServers}" />
+        <Grid Margin="0,0,10,0">
+            <ListBox
+                x:Name="ListBox_SearchServers"
+                ItemsSource="{Binding ServerItems}"
+                SelectionChanged="ListBox_SearchServers_SelectionChanged"
+                Style="{StaticResource ListBoxStyle_SearchServers}" />
+            <ui:LoadingSpinner
+                x:Name="LoadingSpinner_Search"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                d:IsLoading="True"
+                Diameter="40"
+                IsLoading="False"
+                Thickness="3" />
+            <TextBlock
+                x:Name="TextBlock_SearchResult"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                d:Text="2333"
+                Foreground="White"
+                Visibility="Hidden" />
+        </Grid>
         <!--  右侧搜索设置  -->
         <StackPanel Grid.Column="1">
             <TextBlock
@@ -30,33 +46,14 @@
                 FontSize="16"
                 Foreground="#FFF"
                 Text="{Binding ElementName=ListBox_SearchServers, Path=Items.Count, StringFormat='数量 ({0})'}" />
-            <ui:TextBoxHint x:Name="TextBox_ServerName" />
-            <WrapPanel Margin="2,0,2,0">
+            <DockPanel>
                 <Button
+                    x:Name="Button_SearchServers"
                     Click="Button_SearchServers_Click"
-                    Content="全部区域"
-                    Tag="all" />
-                <Button
-                    Click="Button_SearchServers_Click"
-                    Content="亚洲"
-                    Tag="asia" />
-                <Button
-                    Click="Button_SearchServers_Click"
-                    Content="欧洲"
-                    Tag="eu" />
-                <Button
-                    Click="Button_SearchServers_Click"
-                    Content="大洋洲"
-                    Tag="oc" />
-                <Button
-                    Click="Button_SearchServers_Click"
-                    Content="北美洲"
-                    Tag="nam" />
-                <Button
-                    Click="Button_SearchServers_Click"
-                    Content="南美洲"
-                    Tag="sam" />
-            </WrapPanel>
+                    Content="搜索"
+                    DockPanel.Dock="Right" />
+                <ui:TextBoxHint x:Name="TextBox_ServerName" />
+            </DockPanel>
             <!--  ///////////////  -->
             <UniformGrid Columns="2">
                 <StackPanel Margin="0,0,5,0">
@@ -81,6 +78,15 @@
                     <CheckBox x:Name="CheckBox_TenPlus" Content="10+" />
                     <CheckBox x:Name="CheckBox_All" Content="全部" />
                     <CheckBox x:Name="CheckBox_Spectator" Content="观众" />
+
+                    <Label Content="区域" />
+                    <CheckBox x:Name="CheckBox_NAm" Content="北美洲" />
+                    <CheckBox x:Name="CheckBox_SAm" Content="南美洲" />
+                    <CheckBox x:Name="CheckBox_AC" Content="南极洲" />
+                    <CheckBox x:Name="CheckBox_Afr" Content="非洲" />
+                    <CheckBox x:Name="CheckBox_EU" Content="欧洲" />
+                    <CheckBox x:Name="CheckBox_Asia" Content="亚洲" />
+                    <CheckBox x:Name="CheckBox_OC" Content="大洋洲" />
                 </StackPanel>
             </UniformGrid>
         </StackPanel>

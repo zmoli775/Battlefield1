@@ -11,6 +11,7 @@
 
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/NavMenu.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/BlurImage.xaml" />
+        <ResourceDictionary Source="/Battlefield1.UI;component/Styles/LoadingSpinner.xaml" />
 
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Label.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Button.xaml" />

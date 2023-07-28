@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://bf1.battlefield.vip/ui/2023/xaml"
+    d:Background="#4C4A48"
     d:Height="720"
     d:Width="1280"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
