@@ -34,7 +34,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -56,7 +56,7 @@
                     Foreground="White"
                     Text="{Binding PlayerModel.Name, FallbackValue='服务器名称'}"
                     TextTrimming="CharacterEllipsis"
-                    TextWrapping="Wrap" />
+                    TextWrapping="NoWrap" />
                 <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
                     <!--  服务器地区  -->
                     <Border
@@ -132,7 +132,24 @@
                 Foreground="White"
                 Text="{Binding PlayerModel.Description, FallbackValue='服务器描述'}"
                 TextTrimming="CharacterEllipsis"
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap">
+                <TextBlock.ToolTip>
+                    <StackPanel MaxWidth="500" Margin="5">
+                        <TextBlock
+                            FontSize="16"
+                            Text="{Binding PlayerModel.Name}"
+                            TextWrapping="Wrap" />
+                        <Border
+                            Height="1"
+                            Margin="0,5,0,5"
+                            Background="#CFCECC" />
+                        <TextBlock
+                            MaxWidth="600"
+                            Text="{Binding PlayerModel.Description}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+                </TextBlock.ToolTip>
+            </TextBlock>
         </DockPanel>
         <!--  //////////////////  -->
         <Separator

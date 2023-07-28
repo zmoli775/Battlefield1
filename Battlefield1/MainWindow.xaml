@@ -42,40 +42,40 @@
                     DockPanel.Dock="Bottom">
                     <ui:NavMenu
                         Margin="0"
-                        Hint="《帮助》"
+                        Hint="《幫助》"
                         Image="/Assets/Images/Menu/menu-icon-help.png" />
                     <ui:NavMenu
                         Margin="0"
-                        Hint="《离开》"
+                        Hint="《離開》"
                         Image="/Assets/Images/Menu/menu-icon-quit.png" />
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" DockPanel.Dock="Top">
-                    <ui:NavMenu Hint="《战地风云5》" Image="/Assets/Images/Menu/menu-icon-bfv.png" />
+                    <ui:NavMenu Hint="《戰地風雲5》" Image="/Assets/Images/Menu/menu-icon-bfv.png" />
                     <ui:NavMenu
                         Hint="《BATTLEFIELD 1》"
                         Image="/Assets/Images/Menu/menu-icon-bf1.png"
                         IsSelected="True" />
-                    <ui:NavMenu Hint="《战地风云4》" Image="/Assets/Images/Menu/menu-icon-bf4.png" />
-                    <ui:NavMenu Hint="《战地风云 : HARDLINE》" Image="/Assets/Images/Menu/menu-icon-bfh.png" />
-                    <ui:NavMenu Hint="《生涯》" Image="/Assets/Images/Menu/menu-icon-player.png" />
-                    <ui:NavMenu Hint="《战队》" Image="/Assets/Images/Menu/menu-icon-platoons.png" />
-                    <ui:NavMenu Hint="《观赏》" Image="/Assets/Images/Menu/menu-icon-video.png" />
+                    <ui:NavMenu Hint="《戰地風雲4》" Image="/Assets/Images/Menu/menu-icon-bf4.png" />
+                    <ui:NavMenu Hint="《戰地風雲 : HARDLINE》" Image="/Assets/Images/Menu/menu-icon-bfh.png" />
+                    <ui:NavMenu Hint="《職涯》" Image="/Assets/Images/Menu/menu-icon-player.png" />
+                    <ui:NavMenu Hint="《戰隊》" Image="/Assets/Images/Menu/menu-icon-platoons.png" />
+                    <ui:NavMenu Hint="《觀賞》" Image="/Assets/Images/Menu/menu-icon-video.png" />
                     <ui:NavMenu Hint="《最新消息》" Image="/Assets/Images/Menu/menu-icon-news.png" />
                 </StackPanel>
             </DockPanel>
         </Border>
         <!--  右侧显示区  -->
         <TabControl Grid.Column="1" Margin="20,10,20,10">
-            <TabItem Header="首页">
+            <TabItem Header="首頁">
                 <views:HomeView />
             </TabItem>
-            <TabItem Header="服务器">
+            <TabItem Header="服務器">
                 <views:ServerView />
             </TabItem>
-            <TabItem Header="战绩">
+            <TabItem Header="戰績">
                 <views:RecordView />
             </TabItem>
-            <TabItem Header="关于">
+            <TabItem Header="關于">
                 <views:AboutView />
             </TabItem>
         </TabControl>

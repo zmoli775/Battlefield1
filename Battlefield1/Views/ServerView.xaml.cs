@@ -17,6 +17,68 @@ public partial class ServerView : UserControl
     public ServerView()
     {
         InitializeComponent();
+        MainWindow.WindowClosingEvent += MainWindow_WindowClosingEvent;
+
+        TextBox_ServerName.Text = IniHelper.ReadValue("ServerSearch", "Name");
+        TextBox_ServerFilter.Text = IniHelper.ReadValue("ServerSearch", "Filter");
+
+        CheckBox_ZoneControl.IsChecked = IniHelper.ReadValue("GameModes", "ZoneControl").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_AirAssault.IsChecked = IniHelper.ReadValue("GameModes", "AirAssault").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_TugOfWar.IsChecked = IniHelper.ReadValue("GameModes", "TugOfWar").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Domination.IsChecked = IniHelper.ReadValue("GameModes", "Domination").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Breakthrough.IsChecked = IniHelper.ReadValue("GameModes", "Breakthrough").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Rush.IsChecked = IniHelper.ReadValue("GameModes", "Rush").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_TeamDeathMatch.IsChecked = IniHelper.ReadValue("GameModes", "TeamDeathMatch").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_BreakthroughLarge.IsChecked = IniHelper.ReadValue("GameModes", "BreakthroughLarge").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Possession.IsChecked = IniHelper.ReadValue("GameModes", "Possession").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Conquest.IsChecked = IniHelper.ReadValue("GameModes", "Conquest").Equals("True", StringComparison.OrdinalIgnoreCase);
+
+        CheckBox_None.IsChecked = IniHelper.ReadValue("GameSlots", "None").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_OneToFive.IsChecked = IniHelper.ReadValue("GameSlots", "OneToFive").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_SixToTen.IsChecked = IniHelper.ReadValue("GameSlots", "SixToTen").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_TenPlus.IsChecked = IniHelper.ReadValue("GameSlots", "TenPlus").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_All.IsChecked = IniHelper.ReadValue("GameSlots", "All").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Spectator.IsChecked = IniHelper.ReadValue("GameSlots", "Spectator").Equals("True", StringComparison.OrdinalIgnoreCase);
+
+        CheckBox_NAm.IsChecked = IniHelper.ReadValue("GameRegions", "NAm").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_SAm.IsChecked = IniHelper.ReadValue("GameRegions", "SAm").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_AC.IsChecked = IniHelper.ReadValue("GameRegions", "AC").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Afr.IsChecked = IniHelper.ReadValue("GameRegions", "Afr").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_EU.IsChecked = IniHelper.ReadValue("GameRegions", "EU").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_Asia.IsChecked = IniHelper.ReadValue("GameRegions", "Asia").Equals("True", StringComparison.OrdinalIgnoreCase);
+        CheckBox_OC.IsChecked = IniHelper.ReadValue("GameRegions", "OC").Equals("True", StringComparison.OrdinalIgnoreCase);
+    }
+
+    private void MainWindow_WindowClosingEvent()
+    {
+        IniHelper.WriteValue("ServerSearch", "Name", TextBox_ServerName.Text.Trim());
+        IniHelper.WriteValue("ServerSearch", "Filter", TextBox_ServerFilter.Text.Trim());
+
+        IniHelper.WriteValue("GameModes", "ZoneControl", $"{CheckBox_ZoneControl.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "AirAssault", $"{CheckBox_AirAssault.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "TugOfWar", $"{CheckBox_TugOfWar.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "Domination", $"{CheckBox_Domination.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "Breakthrough", $"{CheckBox_Breakthrough.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "Rush", $"{CheckBox_Rush.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "TeamDeathMatch", $"{CheckBox_TeamDeathMatch.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "BreakthroughLarge", $"{CheckBox_BreakthroughLarge.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "Possession", $"{CheckBox_Possession.IsChecked == true}");
+        IniHelper.WriteValue("GameModes", "Conquest", $"{CheckBox_Conquest.IsChecked == true}");
+
+        IniHelper.WriteValue("GameSlots", "None", $"{CheckBox_None.IsChecked == true}");
+        IniHelper.WriteValue("GameSlots", "OneToFive", $"{CheckBox_OneToFive.IsChecked == true}");
+        IniHelper.WriteValue("GameSlots", "SixToTen", $"{CheckBox_SixToTen.IsChecked == true}");
+        IniHelper.WriteValue("GameSlots", "TenPlus", $"{CheckBox_TenPlus.IsChecked == true}");
+        IniHelper.WriteValue("GameSlots", "All", $"{CheckBox_All.IsChecked == true}");
+        IniHelper.WriteValue("GameSlots", "Spectator", $"{CheckBox_Spectator.IsChecked == true}");
+
+        IniHelper.WriteValue("GameRegions", "NAm", $"{CheckBox_NAm.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "SAm", $"{CheckBox_SAm.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "AC", $"{CheckBox_AC.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "Afr", $"{CheckBox_Afr.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "EU", $"{CheckBox_EU.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "Asia", $"{CheckBox_Asia.IsChecked == true}");
+        IniHelper.WriteValue("GameRegions", "OC", $"{CheckBox_OC.IsChecked == true}");
     }
 
     private void Button_SearchServers_Click(object sender, RoutedEventArgs e)
@@ -92,13 +154,13 @@ public partial class ServerView : UserControl
                     Region = item.region,
                     RegionImage = ClientUtil.GetServerRegionImage(item.region),
                     Name = item.prefix,
-                    Description = ChsHelper.ToSimplified(item.description),
+                    Description = item.description,
                     Soldier = item.playerAmount,
                     MaxSoldier = item.maxPlayers,
                     Queue = item.inQue,
                     Spectator = item.inSpectator,
-                    MapMode = ChsHelper.ToSimplified(item.mode),
-                    MapName = ChsHelper.ToSimplified(item.currentMap),
+                    MapMode = item.mode,
+                    MapName = item.currentMap,
                     MapImage = ClientUtil.GetServerMapImageSmall(item.url),
                     IsCustom = item.isCustom,
                     IsOfficial = item.official,

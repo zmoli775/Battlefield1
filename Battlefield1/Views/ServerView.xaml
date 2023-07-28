@@ -45,7 +45,7 @@
                 Margin="5"
                 FontSize="16"
                 Foreground="#FFF"
-                Text="{Binding ElementName=ListBox_SearchServers, Path=Items.Count, StringFormat='数量 ({0})'}" />
+                Text="{Binding ElementName=ListBox_SearchServers, Path=Items.Count, StringFormat='檢視遊戲 ({0})'}" />
             <DockPanel>
                 <Button
                     x:Name="Button_SearchServers"
@@ -55,40 +55,40 @@
                     DockPanel.Dock="Right" />
                 <ui:TextBoxHint x:Name="TextBox_ServerName" />
             </DockPanel>
-            <Label Content="过滤" />
-            <ui:TextBoxHint x:Name="TextBox_ServerFilter" />
+            <Label Content="過濾" />
+            <ui:TextBoxHint x:Name="TextBox_ServerFilter" Hint="關鍵詞以英文逗號隔開..." />
             <!--  ///////////////  -->
             <UniformGrid Columns="2">
                 <StackPanel Margin="0,0,5,0">
                     <Label Content="模式" />
-                    <CheckBox x:Name="CheckBox_ZoneControl" Content="空降补给" />
-                    <CheckBox x:Name="CheckBox_AirAssault" Content="空中突袭" />
-                    <CheckBox x:Name="CheckBox_TugOfWar" Content="前线" />
-                    <CheckBox x:Name="CheckBox_Domination" Content="抢攻" />
-                    <CheckBox x:Name="CheckBox_Breakthrough" Content="闪击行动" />
-                    <CheckBox x:Name="CheckBox_Rush" Content="突袭" />
-                    <CheckBox x:Name="CheckBox_TeamDeathMatch" Content="团队死斗" />
-                    <CheckBox x:Name="CheckBox_BreakthroughLarge" Content="行动模式" />
-                    <CheckBox x:Name="CheckBox_Possession" Content="战争信鸽" />
+                    <CheckBox x:Name="CheckBox_ZoneControl" Content="空降補給" />
+                    <CheckBox x:Name="CheckBox_AirAssault" Content="空中突襲" />
+                    <CheckBox x:Name="CheckBox_TugOfWar" Content="前線" />
+                    <CheckBox x:Name="CheckBox_Domination" Content="搶攻" />
+                    <CheckBox x:Name="CheckBox_Breakthrough" Content="閃擊行動" />
+                    <CheckBox x:Name="CheckBox_Rush" Content="突襲" />
+                    <CheckBox x:Name="CheckBox_TeamDeathMatch" Content="團隊死鬥" />
+                    <CheckBox x:Name="CheckBox_BreakthroughLarge" Content="行動模式" />
+                    <CheckBox x:Name="CheckBox_Possession" Content="戰爭信鴿" />
                     <CheckBox x:Name="CheckBox_Conquest" Content="征服" />
                 </StackPanel>
 
                 <StackPanel Margin="5,0,0,0">
                     <Label Content="空位" />
-                    <CheckBox x:Name="CheckBox_None" Content="无" />
+                    <CheckBox x:Name="CheckBox_None" Content="無" />
                     <CheckBox x:Name="CheckBox_OneToFive" Content="1 - 5" />
                     <CheckBox x:Name="CheckBox_SixToTen" Content="6 - 10" />
                     <CheckBox x:Name="CheckBox_TenPlus" Content="10+" />
                     <CheckBox x:Name="CheckBox_All" Content="全部" />
-                    <CheckBox x:Name="CheckBox_Spectator" Content="观众" />
+                    <CheckBox x:Name="CheckBox_Spectator" Content="觀衆" />
 
-                    <Label Content="区域" />
+                    <Label Content="區域" />
                     <CheckBox x:Name="CheckBox_NAm" Content="北美洲" />
                     <CheckBox x:Name="CheckBox_SAm" Content="南美洲" />
-                    <CheckBox x:Name="CheckBox_AC" Content="南极洲" />
+                    <CheckBox x:Name="CheckBox_AC" Content="南極洲" />
                     <CheckBox x:Name="CheckBox_Afr" Content="非洲" />
-                    <CheckBox x:Name="CheckBox_EU" Content="欧洲" />
-                    <CheckBox x:Name="CheckBox_Asia" Content="亚洲" />
+                    <CheckBox x:Name="CheckBox_EU" Content="歐洲" />
+                    <CheckBox x:Name="CheckBox_Asia" Content="亞洲" />
                     <CheckBox x:Name="CheckBox_OC" Content="大洋洲" />
                 </StackPanel>
             </UniformGrid>

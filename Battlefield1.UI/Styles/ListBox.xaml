@@ -129,7 +129,7 @@
                                 </TextBlock>
                                 <!--  服务器其他信息  -->
                                 <StackPanel Orientation="Horizontal">
-                                    <!--  服务器地区 日服  -->
+                                    <!--  服务器地区  -->
                                     <Border
                                         Width="20"
                                         Height="14"
@@ -240,7 +240,7 @@
                                 Width="70"
                                 Margin="0,0,10,0"
                                 VerticalAlignment="Center"
-                                Text="{Binding PlayTime, StringFormat='{}{0} 分钟'}"
+                                Text="{Binding PlayTime, StringFormat='{}{0} 分鍾'}"
                                 TextAlignment="Right" />
                             <TextBlock
                                 Width="40"

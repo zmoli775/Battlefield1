@@ -1,12 +1,12 @@
-﻿using Battlefield1.Helpers;
-
-namespace Battlefield1;
+﻿namespace Battlefield1;
 
 /// <summary>
 /// MainWindow.xaml 的交互逻辑
 /// </summary>
 public partial class MainWindow : Window
 {
+    public static event Action WindowClosingEvent;
+
     public MainWindow()
     {
         InitializeComponent();
@@ -17,14 +17,10 @@ public partial class MainWindow : Window
 
     private void Window_Main_Loaded(object sender, RoutedEventArgs e)
     {
-        Task.Run(() =>
-        {
-            ChsHelper.PreHeat();
-        });
     }
 
     private void Window_Main_Closing(object sender, CancelEventArgs e)
     {
-
+        WindowClosingEvent?.Invoke();
     }
 }

@@ -22,5 +22,5 @@ public class TextBoxHint : TextBox
         set { SetValue(HintProperty, value); }
     }
     public static readonly DependencyProperty HintProperty =
-        DependencyProperty.Register("Hint", typeof(string), typeof(TextBoxHint), new PropertyMetadata("以名称筛选..."));
+        DependencyProperty.Register("Hint", typeof(string), typeof(TextBoxHint), new PropertyMetadata("以名稱篩選..."));
 }
