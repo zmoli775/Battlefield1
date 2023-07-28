@@ -144,7 +144,8 @@ public partial class PlayerWindow : Window
                         Name = name,
                         PlayTime = playTime,
                         Rank = rank,
-                        Latency = latency
+                        Latency = latency,
+                        LOC = pro["LOC"].GetValue<long>()
                     });
                 }
                 else
@@ -156,7 +157,8 @@ public partial class PlayerWindow : Window
                         Name = name,
                         PlayTime = playTime,
                         Rank = rank,
-                        Latency = latency
+                        Latency = latency,
+                        LOC = pro["LOC"].GetValue<long>()
                     });
                 }
             }
@@ -185,6 +187,7 @@ public partial class PlayerWindow : Window
                 Rank = player.Rank,
                 RankImage = ClientUtil.GetPlayerRankImage(player.Rank),
                 Latency = player.Latency,
+                Language= ClientUtil.GetGameLanguage(player.LOC),
                 IsAdmin = AdminList.Contains(player.PID),
                 IsVIP = VIPList.Contains(player.PID),
                 Is100Plus = player.Rank >= 100,

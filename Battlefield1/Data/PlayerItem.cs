@@ -10,6 +10,9 @@ public class PlayerItem
     public string RankImage { get; set; }
     public int Latency { get; set; }
 
+    public long LOC { get; set; }
+    public string Language { get; set; }
+
     public bool IsAdmin { get; set; }
     public bool IsVIP { get; set; }
 
