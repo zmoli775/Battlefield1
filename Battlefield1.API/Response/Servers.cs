@@ -16,6 +16,7 @@ public class Servers
         public string mode { get; set; }
         public string currentMap { get; set; }
         public string ownerId { get; set; }
+        public string country { get; set; }
         public string region { get; set; }
         public string platform { get; set; }
         public string serverId { get; set; }

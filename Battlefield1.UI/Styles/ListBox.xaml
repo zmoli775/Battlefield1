@@ -134,10 +134,10 @@
                                         Width="20"
                                         Height="14"
                                         SnapsToDevicePixels="True">
-                                        <Image Source="{Binding RegionImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                                        <Image Source="{Binding CountryImage, Converter={StaticResource StringToImageSourceConverter}}" />
                                         <Border.Effect>
                                             <DropShadowEffect
-                                                BlurRadius="3"
+                                                BlurRadius="5"
                                                 ShadowDepth="0"
                                                 Color="#000" />
                                         </Border.Effect>
@@ -167,10 +167,11 @@
                             <StackPanel
                                 Grid.Column="2"
                                 HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
                                 Orientation="Horizontal">
                                 <!--  服务器人数、队列  -->
                                 <TextBlock
-                                    Margin="10,0,10,0"
+                                    Margin="0,0,10,0"
                                     VerticalAlignment="Center"
                                     FontSize="14">
                                     <TextBlock.Text>
@@ -182,7 +183,17 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                                <!--  查看服务器详细  -->
+                                <!--  服务器延迟  -->
+                                <Image
+                                    Height="12"
+                                    Margin="5,0,10,0"
+                                    VerticalAlignment="Center"
+                                    Source="{Binding PingImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                                <TextBlock
+                                    Width="25"
+                                    Margin="0,0,10,0"
+                                    VerticalAlignment="Center"
+                                    Text="{Binding PingNumber}" />
                             </StackPanel>
                         </Grid>
                     </Border>
@@ -237,14 +248,12 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Horizontal">
                             <TextBlock
-                                Width="100"
-                                Margin="0,0,10,0"
+                                Width="60"
                                 VerticalAlignment="Center"
                                 Text="{Binding Language}"
                                 TextAlignment="Right" />
                             <TextBlock
                                 Width="60"
-                                Margin="0,0,10,0"
                                 VerticalAlignment="Center"
                                 Text="{Binding PlayTime, StringFormat='{}{0} 分鍾'}"
                                 TextAlignment="Right" />

@@ -5,8 +5,9 @@ public class ServerItem
     public int Index { get; set; }
     public string GameId { get; set; }
     public string Guid { get; set; }
+    public string Country { get; set; }
+    public string CountryImage { get; set; }
     public string Region { get; set; }
-    public string RegionImage { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public int Soldier { get; set; }
@@ -19,6 +20,8 @@ public class ServerItem
     public bool IsCustom { get; set; }
     public bool IsOfficial { get; set; }
     public int TickRate { get; set; }
+    public string PingImage { get; set; }
+    public int PingNumber { get; set; }
 
     public string Team1Image { get; set; }
     public string Team1Key { get; set; }

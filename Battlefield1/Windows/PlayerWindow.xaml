@@ -57,16 +57,16 @@
                     Text="{Binding PlayerModel.Name, FallbackValue='服务器名称'}"
                     TextTrimming="CharacterEllipsis"
                     TextWrapping="NoWrap" />
-                <StackPanel Margin="0,3,0,0" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
                     <!--  服务器地区  -->
                     <Border
                         Width="20"
                         Height="14"
                         SnapsToDevicePixels="True">
-                        <Image Source="{Binding PlayerModel.RegionImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                        <Image Source="{Binding PlayerModel.CountryImage, Converter={StaticResource StringToImageSourceConverter}}" />
                         <Border.Effect>
                             <DropShadowEffect
-                                BlurRadius="3"
+                                BlurRadius="5"
                                 ShadowDepth="0"
                                 Color="#000" />
                         </Border.Effect>
@@ -105,6 +105,20 @@
                             </MultiBinding>
                         </TextBlock.Text>
                     </TextBlock>
+                    <!--  服务器延迟  -->
+                    <TextBlock
+                        Margin="10,0,10,0"
+                        Foreground="White"
+                        Text="|" />
+                    <Image
+                        Height="12"
+                        Margin="0,0,10,0"
+                        VerticalAlignment="Center"
+                        Source="{Binding PlayerModel.PingImage, Converter={StaticResource StringToImageSourceConverter}}" />
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        Foreground="White"
+                        Text="{Binding PlayerModel.PingNumber}" />
                     <!--  更多  -->
                     <TextBlock
                         Margin="10,0,10,0"

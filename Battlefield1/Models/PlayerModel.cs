@@ -9,7 +9,7 @@ public partial class PlayerModel : ObservableObject
     [ObservableProperty]
     private string guid;
     [ObservableProperty]
-    private string regionImage;
+    private string countryImage;
     [ObservableProperty]
     private string name;
     [ObservableProperty]
@@ -34,6 +34,10 @@ public partial class PlayerModel : ObservableObject
     private bool isOfficial;
     [ObservableProperty]
     private int tickRate;
+    [ObservableProperty]
+    private string pingImage;
+    [ObservableProperty]
+    private int pingNumber;
 
     [ObservableProperty]
     private string team1Image;

@@ -29,7 +29,7 @@ public partial class PlayerWindow : Window
 
         PlayerModel.GameId = serverItem.GameId;
         PlayerModel.Guid = serverItem.Guid;
-        PlayerModel.RegionImage = serverItem.RegionImage;
+        PlayerModel.CountryImage = serverItem.CountryImage;
         PlayerModel.Name = serverItem.Name;
         PlayerModel.Description = serverItem.Description;
         PlayerModel.Soldier = serverItem.Soldier;
@@ -42,6 +42,8 @@ public partial class PlayerWindow : Window
         PlayerModel.IsCustom = serverItem.IsCustom;
         PlayerModel.IsOfficial = serverItem.IsOfficial;
         PlayerModel.TickRate = serverItem.TickRate;
+        PlayerModel.PingImage = serverItem.PingImage;
+        PlayerModel.PingNumber = serverItem.PingNumber;
 
         PlayerModel.Team1Image = serverItem.Team1Image;
         PlayerModel.Team2Image = serverItem.Team2Image;

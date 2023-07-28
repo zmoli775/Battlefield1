@@ -3,16 +3,16 @@
 public static class ClientUtil
 {
     /// <summary>
-    /// 获取服务器区域图片
+    /// 获取服务器国家图片
     /// </summary>
-    /// <param name="region"></param>
+    /// <param name="country"></param>
     /// <returns></returns>
-    public static string GetServerRegionImage(string region)
+    public static string GetServerCountryImage(string country)
     {
-        if (string.IsNullOrWhiteSpace(region))
+        if (string.IsNullOrWhiteSpace(country))
             return string.Empty;
 
-        return $"/Assets/Images/Region/{region.ToLower()}.png";
+        return $"/Assets/Images/Country/{country.ToLower()}.png";
     }
 
     /// <summary>
@@ -112,49 +112,70 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetGameLanguage(long loc)
     {
-        return loc switch
+        var temp = loc / 100000;
+
+        return temp switch
         {
-            1936802124 => "阿尔巴尼亚语",
-            1650803289 => "比利时语",
-            1886667346 => "葡萄牙语(巴西)",
-            1650934343 => "保加利亚语",
-            1752320082 => "克罗地亚语",
-            1668498266 => "捷克语",
-            1684096075 => "丹麦语",
-            1702118725 => "爱沙尼亚语",
-            1718175305 => "芬兰语",
-            1718765138 => "法语",
-            1684358213 => "德语",
-            1701594962 => "希腊语",
-            1752516693 => "匈牙利语",
-            1952532814 => "泰米尔语",
-            1768842345 => "印度语",
-            1751468364 => "希伯来语",
-            1769228628 => "意大利语",
-            1784760912 => "日语",
-            1819692118 => "拉脱维亚语",
-            1819561044 => "立陶宛语",
-            1852591692 => "荷兰语",
-            1851936335 => "挪威语",
-            1886146636 => "波兰语",
-            1802455890 => "朝鲜语",
-            1919898191 => "罗马尼亚语",
-            1920291413 => "俄语",
-            2053653326 => "简体中文",
-            1936479051 => "斯洛伐克语",
-            1936479049 => "斯洛文尼亚语",
-            1702053203 => "西班牙语",
-            1634877765 => "阿拉伯语",
-            1937134422 => "瑞典语",
-            1952994376 => "泰语",
-            2053657687 => "繁体中文",
-            1953649746 => "土耳其语",
-            1969968449 => "乌克兰语",
-            1701726018 => "英式英语",
-            1701729619 => "美式英语",
-            1986614862 => "越南语",
-            //_ => "未知",
+            16840 => "丹麥語",
+            16843 => "德語",
+            17017 => "英語",
+            17020 => "西班牙語",
+            17181 => "芬蘭語",
+            17187 => "法語",
+            17525 => "匈牙利語",
+            17692 => "意大利語",
+            17847 => "日語",
+            18024 => "韓語",
+            18525 => "荷蘭語",
+            18861 => "波蘭語",
+            18866 => "葡萄牙語",
+            19202 => "俄語",
+            19371 => "瑞典語",
+            19529 => "泰語",
+            19536 => "土耳其語",
+            19699 => "烏克蘭語",
+            20536 => "中文",
             _ => $"{loc}",
         };
+    }
+
+    /// <summary>
+    /// 获取服务器ping数字
+    /// </summary>
+    /// <param name="country"></param>
+    /// <returns></returns>
+    public static int GetServerPingNumber(string country)
+    {
+        return country.ToLower() switch
+        {
+            "hk" => 34,
+            "jp" => 56,
+            "de" => 149,
+            "au" => 180,
+            "us" => 206,
+            "br" => 231,
+            _ => 300,
+        };
+    }
+
+    /// <summary>
+    /// 获取服务器ping图片
+    /// </summary>
+    /// <param name="country"></param>
+    /// <returns></returns>
+    public static string GetServerPingImage(string country)
+    {
+        var name = country.ToLower() switch
+        {
+            "hk" => "ping-best",
+            "jp" => "ping-good",
+            "de" => "ping-ok",
+            "au" => "ping-bad",
+            "us" => "ping-worst",
+            "br" => "ping-worst",
+            _ => "ping-unknown"
+        };
+
+        return $"/Assets/Images/Ping/{name}.png";
     }
 }
