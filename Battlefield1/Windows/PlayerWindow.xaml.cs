@@ -2,8 +2,8 @@
 using Battlefield1.Data;
 using Battlefield1.Models;
 using Battlefield1.Utils;
+
 using CommunityToolkit.Mvvm.Input;
-using static Battlefield1.API.Response.Servers;
 
 namespace Battlefield1.Windows;
 
@@ -208,5 +208,20 @@ public partial class PlayerWindow : Window
             return p1.Latency.CompareTo(p2.Latency);
         }
         return 0;
+    }
+
+    private async void GetPlayerLifeData(List<PlayerItem> team1Players, List<PlayerItem> team2Players)
+    {
+        var pidList = new List<long>();
+        var pidListStr = string.Join(',', pidList.ToArray());
+
+        team1Players.ForEach(player => pidList.Add(player.PID));
+        team2Players.ForEach(player => pidList.Add(player.PID));
+
+        var result = await Blaze2788Pro.GetPlayerCore(pidListStr);
+        if (result == null)
+        {
+
+        }
     }
 }

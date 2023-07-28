@@ -36,4 +36,32 @@ public static class Blaze2788Pro
 
         return null;
     }
+
+    public static async Task<string> GetPlayerCore(string pidListStr)
+    {
+        var reqBody = "{\"CAT String\":\"player_core\",\"EID List<Integer>\":[" + pidListStr + "]}";
+
+        var request = new RestRequest("Stats.getStats")
+            .AddJsonBody(reqBody);
+
+        var response = await _client.ExecutePostAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return response.Content;
+
+        return null;
+    }
+
+    public static async Task<string> GetPlayerStatCategory(string pidListStr)
+    {
+        var reqBody = "{\"CAT String\":\"player_statcategory\",\"EID List<Integer>\":[" + pidListStr + "]}";
+
+        var request = new RestRequest("Stats.getStats")
+            .AddJsonBody(reqBody);
+
+        var response = await _client.ExecutePostAsync(request);
+        if (response.StatusCode == HttpStatusCode.OK)
+            return response.Content;
+
+        return null;
+    }
 }
