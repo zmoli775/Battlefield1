@@ -7,7 +7,7 @@
     xmlns:ui="http://bf1.battlefield.vip/ui/2023/xaml"
     xmlns:views="clr-namespace:Battlefield1.Views"
     x:Name="Window_Main"
-    Title="Battlefield™ 1"
+    Title="Battlefield™ 1 - 主程序"
     Width="1280"
     Height="720"
     MinWidth="1280"

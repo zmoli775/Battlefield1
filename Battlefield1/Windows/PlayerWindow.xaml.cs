@@ -1,6 +1,9 @@
 ﻿using Battlefield1.API;
 using Battlefield1.Data;
+using Battlefield1.Models;
 using Battlefield1.Utils;
+using CommunityToolkit.Mvvm.Input;
+using static Battlefield1.API.Response.Servers;
 
 namespace Battlefield1.Windows;
 
@@ -9,10 +12,10 @@ namespace Battlefield1.Windows;
 /// </summary>
 public partial class PlayerWindow : Window
 {
+    public PlayerModel PlayerModel { get; set; } = new();
+
     public ObservableCollection<PlayerItem> Team1PlayerItems { get; set; } = new();
     public ObservableCollection<PlayerItem> Team2PlayerItems { get; set; } = new();
-
-    private readonly ServerItem serverItem;
 
     public readonly List<PlayerItem> Team1Players = new();
     public readonly List<PlayerItem> Team2Players = new();
@@ -24,26 +27,61 @@ public partial class PlayerWindow : Window
     {
         InitializeComponent();
 
-        this.serverItem = serverItem;
+        PlayerModel.GameId = serverItem.GameId;
+        PlayerModel.Guid = serverItem.Guid;
+        PlayerModel.RegionImage = serverItem.RegionImage;
+        PlayerModel.Name = serverItem.Name;
+        PlayerModel.Description = serverItem.Description;
+        PlayerModel.Soldier = serverItem.Soldier;
+        PlayerModel.MaxSoldier = serverItem.MaxSoldier;
+        PlayerModel.Queue = serverItem.Queue;
+        PlayerModel.Spectator = serverItem.Spectator;
+        PlayerModel.MapMode = serverItem.MapMode;
+        PlayerModel.MapName = serverItem.MapName;
+        PlayerModel.MapImage = serverItem.MapImage;
+        PlayerModel.IsCustom = serverItem.IsCustom;
+        PlayerModel.IsOfficial = serverItem.IsOfficial;
+        PlayerModel.TickRate = serverItem.TickRate;
+
+        PlayerModel.Team1Image = serverItem.Team1Image;
+        PlayerModel.Team2Image = serverItem.Team2Image;
     }
 
-    private void Window_Player_Loaded(object sender, RoutedEventArgs e)
+    private async void Window_Player_Loaded(object sender, RoutedEventArgs e)
     {
-        GetServerPlayer();
+        await GetServerPlayer();
     }
 
     private void Window_Player_Closing(object sender, CancelEventArgs e)
     {
-
     }
 
-    private async void GetServerPlayer()
+    [RelayCommand]
+    private async Task GetServerPlayer()
     {
-        var result = await Blaze2788Pro.GetFullGameData(serverItem.GameId);
+        Team1Players.Clear();
+        Team2Players.Clear();
+
+        Team1PlayerItems.Clear();
+        Team2PlayerItems.Clear();
+
+        LoadingSpinner_Search.IsLoading = true;
+        TextBlock_SearchResult.Visibility = Visibility.Hidden;
+
+        ///////////////////////////////////////////////////
+
+        var result = await Blaze2788Pro.GetFullGameData(PlayerModel.GameId);
         if (result == null)
         {
+            LoadingSpinner_Search.IsLoading = false;
+            TextBlock_SearchResult.Visibility = Visibility.Visible;
+            TextBlock_SearchResult.Text = "未找到搜索结果或搜索失败，请重试";
             return;
         }
+
+        LoadingSpinner_Search.IsLoading = false;
+
+        ///////////////////////////////////////////////////
 
         var jsonObject = JsonNode.Parse(result);
 

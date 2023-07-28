@@ -35,7 +35,7 @@
                 x:Name="TextBlock_SearchResult"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                d:Text="2333"
+                d:Text="错误提示"
                 Foreground="White"
                 Visibility="Hidden" />
         </Grid>
