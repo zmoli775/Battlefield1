@@ -11,7 +11,7 @@
 [assembly: Guid("fc50a78a-5e4d-44ad-ac1c-056954f07e37")]
 
 // PropertyGroup Generate????Attribute
-[assembly: AssemblyTitle("Battlefield™ 1 - 游戏数据查询")]
+[assembly: AssemblyTitle("Battlefield™ 1")]
 [assembly: AssemblyCompany("https://battlefield.vip")]
 [assembly: AssemblyProduct("Battlefield™ 1")]
 [assembly: AssemblyVersion("1.0.0.0")]

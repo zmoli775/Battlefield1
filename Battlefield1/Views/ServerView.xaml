@@ -49,11 +49,14 @@
             <DockPanel>
                 <Button
                     x:Name="Button_SearchServers"
+                    Margin="0,0,5,0"
                     Click="Button_SearchServers_Click"
                     Content="搜索"
                     DockPanel.Dock="Right" />
                 <ui:TextBoxHint x:Name="TextBox_ServerName" />
             </DockPanel>
+            <Label Content="过滤" />
+            <ui:TextBoxHint x:Name="TextBox_ServerFilter" />
             <!--  ///////////////  -->
             <UniformGrid Columns="2">
                 <StackPanel Margin="0,0,5,0">

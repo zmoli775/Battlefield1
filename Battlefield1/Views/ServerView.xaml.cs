@@ -21,7 +21,9 @@ public partial class ServerView : UserControl
 
     private void Button_SearchServers_Click(object sender, RoutedEventArgs e)
     {
+        Button_SearchServers.IsEnabled = false;
         SearchServers();
+        Button_SearchServers.IsEnabled = true;
     }
 
     private void ListBox_SearchServers_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -68,9 +70,18 @@ public partial class ServerView : UserControl
         var servers = JsonHelper.JsonDeserialize<Servers>(result);
         servers.servers = servers.servers.OrderByDescending(s => s.playerAmount).ThenByDescending(s => s.inQue).ToList();
 
+        var filter = TextBox_ServerFilter.Text.Trim();
+        var filterList = new List<string>();
+        if (!string.IsNullOrWhiteSpace(filter))
+            filterList = filter.Split(',').ToList();
+
         var index = 0;
         foreach (var item in servers.servers)
         {
+            if (filterList.Count != 0 &&
+                filterList.Find(key => item.prefix.Contains(key, StringComparison.OrdinalIgnoreCase)) != null)
+                continue;
+
             this.Dispatcher.Invoke(DispatcherPriority.Background, () =>
             {
                 ServerItems.Add(new()
