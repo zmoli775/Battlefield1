@@ -4,6 +4,8 @@
 
 ## 截图预览
 
-![image](https://github.com/CrazyZhang666/Battlefield1/assets/28080853/7a978e77-31d0-4656-b2e4-17f7b12c886c)
+![image](https://github.com/CrazyZhang666/Battlefield1/assets/28080853/a8fea7a2-43af-40ed-925f-9d921af7136f)
 
-![image](https://github.com/CrazyZhang666/Battlefield1/assets/28080853/3a6c9e94-bf2b-4460-9707-fd82ab8c9597)
+![image](https://github.com/CrazyZhang666/Battlefield1/assets/28080853/9b9e5b95-1990-4144-a9cc-91f4b8c92f8f)
+
+![image](https://github.com/CrazyZhang666/Battlefield1/assets/28080853/acd50d2a-1ea4-48c2-aafc-6fdd20373aca)
