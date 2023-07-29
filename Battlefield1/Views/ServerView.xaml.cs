@@ -163,6 +163,8 @@ public partial class ServerView : UserControl
                     MapMode = item.mode,
                     MapName = item.currentMap,
                     MapImage = ClientUtil.GetServerMapImageSmall(item.url),
+                    MapImage2 = ClientUtil.GetServerMapImageMedium(item.url),
+                    MapImage3 = ClientUtil.GetServerMapImageAny(item.url),
                     IsCustom = item.isCustom,
                     IsOfficial = item.official,
                     TickRate = 60,

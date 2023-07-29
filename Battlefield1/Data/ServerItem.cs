@@ -17,6 +17,8 @@ public class ServerItem
     public string MapMode { get; set; }
     public string MapName { get; set; }
     public string MapImage { get; set; }
+    public string MapImage2 { get; set; }
+    public string MapImage3 { get; set; }
     public bool IsCustom { get; set; }
     public bool IsOfficial { get; set; }
     public int TickRate { get; set; }

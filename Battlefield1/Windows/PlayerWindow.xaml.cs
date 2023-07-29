@@ -40,6 +40,8 @@ public partial class PlayerWindow : Window
         PlayerModel.MapMode = serverItem.MapMode;
         PlayerModel.MapName = serverItem.MapName;
         PlayerModel.MapImage = serverItem.MapImage;
+        PlayerModel.MapImage2 = serverItem.MapImage2;
+        PlayerModel.MapImage3 = serverItem.MapImage3;
         PlayerModel.IsCustom = serverItem.IsCustom;
         PlayerModel.IsOfficial = serverItem.IsOfficial;
         PlayerModel.TickRate = serverItem.TickRate;

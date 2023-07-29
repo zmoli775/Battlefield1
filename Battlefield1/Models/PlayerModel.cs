@@ -29,6 +29,10 @@ public partial class PlayerModel : ObservableObject
     [ObservableProperty]
     private string mapImage;
     [ObservableProperty]
+    private string mapImage2;
+    [ObservableProperty]
+    private string mapImage3;
+    [ObservableProperty]
     private bool isCustom;
     [ObservableProperty]
     private bool isOfficial;

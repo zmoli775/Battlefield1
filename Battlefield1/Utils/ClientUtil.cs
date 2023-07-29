@@ -29,20 +29,31 @@ public static class ClientUtil
     }
 
     /// <summary>
+    /// 从URL中提取服务器地图名称
+    /// </summary>
+    /// <param name="map"></param>
+    /// <returns></returns>
+    public static string GetServerMapNameFormURL(string map)
+    {
+        var match = Regex.Match(map, "MP_.*_");
+        if (match.Success)
+            return match.Groups[0].Value.ToLower();
+
+        return string.Empty;
+    }
+
+    /// <summary>
     /// 获取服务器地图图片（小型）
     /// </summary>
     /// <param name="map"></param>
     /// <returns></returns>
     public static string GetServerMapImageSmall(string map)
     {
-        if (string.IsNullOrWhiteSpace(map))
+        var mapName = GetServerMapNameFormURL(map);
+        if (string.IsNullOrWhiteSpace(mapName))
             return string.Empty;
 
-        var match = Regex.Match(map, "MP_.*_");
-        if (match.Success)
-            return $"/Assets/Images/Map/{match.Groups[0].Value.ToLower()}small.jpg";
-
-        return string.Empty;
+        return $"/Assets/Images/Map/{mapName}small.jpg";
     }
 
     /// <summary>
@@ -52,14 +63,25 @@ public static class ClientUtil
     /// <returns></returns>
     public static string GetServerMapImageMedium(string map)
     {
-        if (string.IsNullOrWhiteSpace(map))
+        var mapName = GetServerMapNameFormURL(map);
+        if (string.IsNullOrWhiteSpace(mapName))
             return string.Empty;
 
-        var match = Regex.Match(map, "MP_.*_");
-        if (match.Success)
-            return $"/Assets/Images/Map/{match.Groups[0].Value.ToLower()}medium.jpg";
+        return $"/Assets/Images/Map/{mapName}medium.jpg";
+    }
 
-        return string.Empty;
+    /// <summary>
+    /// 获取服务器地图图片（大型）
+    /// </summary>
+    /// <param name="map"></param>
+    /// <returns></returns>
+    public static string GetServerMapImageAny(string map)
+    {
+        var mapName = GetServerMapNameFormURL(map);
+        if (string.IsNullOrWhiteSpace(mapName))
+            return string.Empty;
+
+        return $"/Assets/Images/Map/{mapName}any.jpg";
     }
 
     /// <summary>

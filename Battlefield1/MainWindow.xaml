@@ -13,72 +13,73 @@
     MinWidth="1280"
     MinHeight="720"
     Closing="Window_Main_Closing"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     Loaded="Window_Main_Loaded"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
-    <Window.Template>
-        <ControlTemplate TargetType="{x:Type Window}">
-            <Grid>
-                <ui:BlurImage Source="/Assets/Images/BGLoop/MP_Ridge.jpg" Style="{StaticResource BlurImageStyle_Base}" />
-                <AdornerDecorator>
-                    <ContentPresenter />
-                </AdornerDecorator>
-            </Grid>
-        </ControlTemplate>
-    </Window.Template>
+    <Window.InputBindings>
+        <KeyBinding Key="F5" Command="{Binding SwitchBackImageCommand}" />
+    </Window.InputBindings>
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <!--  左侧导航栏  -->
-        <Border BorderBrush="{StaticResource Bf1LineColor}" BorderThickness="0,0,1,0">
-            <DockPanel>
-                <StackPanel
-                    Margin="0,20,0,20"
-                    VerticalAlignment="Center"
-                    DockPanel.Dock="Bottom">
-                    <ui:NavMenu
-                        Margin="0"
-                        Hint="《幫助》"
-                        Image="/Assets/Images/Menu/menu-icon-help.png" />
-                    <ui:NavMenu
-                        Margin="0"
-                        Hint="《離開》"
-                        Image="/Assets/Images/Menu/menu-icon-quit.png" />
-                </StackPanel>
-                <StackPanel VerticalAlignment="Center" DockPanel.Dock="Top">
-                    <ui:NavMenu Hint="《戰地風雲5》" Image="/Assets/Images/Menu/menu-icon-bfv.png" />
-                    <ui:NavMenu
-                        Hint="《BATTLEFIELD 1》"
-                        Image="/Assets/Images/Menu/menu-icon-bf1.png"
-                        IsSelected="True" />
-                    <ui:NavMenu Hint="《戰地風雲4》" Image="/Assets/Images/Menu/menu-icon-bf4.png" />
-                    <ui:NavMenu Hint="《戰地風雲 : HARDLINE》" Image="/Assets/Images/Menu/menu-icon-bfh.png" />
-                    <ui:NavMenu Hint="《職涯》" Image="/Assets/Images/Menu/menu-icon-player.png" />
-                    <ui:NavMenu Hint="《戰隊》" Image="/Assets/Images/Menu/menu-icon-platoons.png" />
-                    <ui:NavMenu Hint="《觀賞》" Image="/Assets/Images/Menu/menu-icon-video.png" />
-                    <ui:NavMenu Hint="《最新消息》" Image="/Assets/Images/Menu/menu-icon-news.png" />
-                </StackPanel>
-            </DockPanel>
-        </Border>
-        <!--  右侧显示区  -->
-        <TabControl Grid.Column="1" Margin="20,10,20,10">
-            <TabItem Header="首頁">
-                <views:HomeView />
-            </TabItem>
-            <TabItem Header="服務器">
-                <views:ServerView />
-            </TabItem>
-            <TabItem Header="戰績">
-                <views:RecordView />
-            </TabItem>
-            <TabItem Header="關于">
-                <views:AboutView />
-            </TabItem>
-        </TabControl>
+        <ui:BlurImage
+            d:Source="/Assets/Images/BGLoop/MP_Ridge.jpg"
+            Source="{Binding MainModel.BackImage, Converter={StaticResource StringToImageSourceConverter}}"
+            Style="{StaticResource BlurImageStyle_Base}" />
+        <!--  //////////////////  -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <!--  左侧导航栏  -->
+            <Border BorderBrush="{StaticResource Bf1LineColor}" BorderThickness="0,0,1,0">
+                <DockPanel>
+                    <StackPanel
+                        Margin="0,20,0,20"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Bottom">
+                        <ui:NavMenu
+                            Margin="0"
+                            Hint="《幫助》"
+                            Image="/Assets/Images/Menu/menu-icon-help.png" />
+                        <ui:NavMenu
+                            Margin="0"
+                            Hint="《離開》"
+                            Image="/Assets/Images/Menu/menu-icon-quit.png" />
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" DockPanel.Dock="Top">
+                        <ui:NavMenu Hint="《戰地風雲5》" Image="/Assets/Images/Menu/menu-icon-bfv.png" />
+                        <ui:NavMenu
+                            Hint="《BATTLEFIELD 1》"
+                            Image="/Assets/Images/Menu/menu-icon-bf1.png"
+                            IsSelected="True" />
+                        <ui:NavMenu Hint="《戰地風雲4》" Image="/Assets/Images/Menu/menu-icon-bf4.png" />
+                        <ui:NavMenu Hint="《戰地風雲 : HARDLINE》" Image="/Assets/Images/Menu/menu-icon-bfh.png" />
+                        <ui:NavMenu Hint="《職涯》" Image="/Assets/Images/Menu/menu-icon-player.png" />
+                        <ui:NavMenu Hint="《戰隊》" Image="/Assets/Images/Menu/menu-icon-platoons.png" />
+                        <ui:NavMenu Hint="《觀賞》" Image="/Assets/Images/Menu/menu-icon-video.png" />
+                        <ui:NavMenu Hint="《最新消息》" Image="/Assets/Images/Menu/menu-icon-news.png" />
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+            <!--  右侧显示区  -->
+            <TabControl Grid.Column="1" Margin="20,10,20,10">
+                <TabItem Header="首頁">
+                    <views:HomeView />
+                </TabItem>
+                <TabItem Header="服務器">
+                    <views:ServerView />
+                </TabItem>
+                <TabItem Header="戰績">
+                    <views:RecordView />
+                </TabItem>
+                <TabItem Header="關于">
+                    <views:AboutView />
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 
 </Window>
