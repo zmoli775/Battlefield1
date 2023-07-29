@@ -1,7 +1,7 @@
 ﻿using Battlefield1.API;
 using Battlefield1.Data;
-using Battlefield1.Models;
 using Battlefield1.Utils;
+using Battlefield1.Models;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -17,6 +17,7 @@ public partial class PlayerWindow : Window
     public ObservableCollection<PlayerItem> Team1PlayerItems { get; set; } = new();
     public ObservableCollection<PlayerItem> Team2PlayerItems { get; set; } = new();
 
+    public readonly List<PlayerItem> AllPlayers = new();
     public readonly List<PlayerItem> Team1Players = new();
     public readonly List<PlayerItem> Team2Players = new();
 
@@ -61,6 +62,7 @@ public partial class PlayerWindow : Window
     [RelayCommand]
     private async Task GetServerPlayer()
     {
+        AllPlayers.Clear();
         Team1Players.Clear();
         Team2Players.Clear();
 
@@ -80,10 +82,6 @@ public partial class PlayerWindow : Window
             TextBlock_SearchResult.Text = "未找到搜索结果或搜索失败，请重试";
             return;
         }
-
-        LoadingSpinner_Search.IsLoading = false;
-
-        ///////////////////////////////////////////////////
 
         var jsonObject = JsonNode.Parse(result);
 
@@ -137,34 +135,32 @@ public partial class PlayerWindow : Window
                         latency = tempLatency;
                 }
 
-                if (teamId == 0)
+                AllPlayers.Add(new()
                 {
-                    // 队伍1
-                    Team1Players.Add(new()
-                    {
-                        PID = pid,
-                        Name = name,
-                        PlayTime = playTime,
-                        Rank = rank,
-                        Latency = latency,
-                        LOC = pro["LOC"].GetValue<long>()
-                    });
-                }
-                else
-                {
-                    // 队伍2
-                    Team2Players.Add(new()
-                    {
-                        PID = pid,
-                        Name = name,
-                        PlayTime = playTime,
-                        Rank = rank,
-                        Latency = latency,
-                        LOC = pro["LOC"].GetValue<long>()
-                    });
-                }
+                    TeamId = teamId,
+                    PID = pid,
+                    Name = name,
+                    PlayTime = playTime,
+                    Rank = rank,
+                    Latency = latency,
+                    LOC = pro["LOC"].GetValue<long>()
+                });
             }
         }
+
+        await GetPlayerLifeData(AllPlayers);
+
+        LoadingSpinner_Search.IsLoading = false;
+
+        ///////////////////////////////////////////////////
+
+        AllPlayers.ForEach(player =>
+        {
+            if (player.TeamId == 0)
+                Team1Players.Add(player);
+            else
+                Team2Players.Add(player);
+        });
 
         // 等级排序
         Team1Players.Sort(PlayerComparison);
@@ -189,11 +185,16 @@ public partial class PlayerWindow : Window
                 Rank = player.Rank,
                 RankImage = ClientUtil.GetPlayerRankImage(player.Rank),
                 Latency = player.Latency,
-                Language= ClientUtil.GetGameLanguage(player.LOC),
+                Language = ClientUtil.GetGameLanguage(player.LOC),
                 IsAdmin = AdminList.Contains(player.PID),
                 IsVIP = VIPList.Contains(player.PID),
                 Is100Plus = player.Rank >= 100,
-                Is150 = player.Rank == 150
+                Is150 = player.Rank == 150,
+                LifeWinPer = player.LifeWinPer,
+                LifeKD = player.LifeKD,
+                LifeKPM = player.LifeKPM,
+                LifeTime = player.LifeTime,
+                LifeSkill = player.LifeSkill
             });
         });
     }
@@ -215,18 +216,109 @@ public partial class PlayerWindow : Window
         return 0;
     }
 
-    private async void GetPlayerLifeData(List<PlayerItem> team1Players, List<PlayerItem> team2Players)
+    private async Task GetPlayerLifeData(List<PlayerItem> allPlayers)
     {
         var pidList = new List<long>();
+        var tempList = new List<TempBlaze>();
+
+        allPlayers.ForEach(player =>
+        {
+            pidList.Add(player.PID);
+            tempList.Add(new() { PID = player.PID });
+        });
+
         var pidListStr = string.Join(',', pidList.ToArray());
 
-        team1Players.ForEach(player => pidList.Add(player.PID));
-        team2Players.ForEach(player => pidList.Add(player.PID));
-
-        var result = await Blaze2788Pro.GetPlayerCore(pidListStr);
-        if (result == null)
+        var task1 = Task.Run(async () =>
         {
+            var result = await Blaze2788Pro.GetPlayerCore(pidListStr);
+            if (result != null)
+            {
+                var jsonObject = JsonNode.Parse(result);
 
-        }
+                var STAT = jsonObject["KSSV"]["No_Scope_Defined"]["STAT"];
+                if (STAT is JsonArray stats)
+                {
+                    for (int i = 0; i < stats.Count; i++)
+                    {
+                        var stat = stats[i];
+
+                        var pid = stat["EID"].GetValue<long>();
+
+                        var STAT2 = stat["STAT"];
+                        if (STAT2 is JsonArray stats2)
+                        {
+                            var second = stats2[159].GetValue<string>();
+                            var skill = stats2[192].GetValue<string>();
+
+                            var temp = tempList.Find(x => x.PID == pid);
+                            if (temp != null)
+                            {
+                                temp.Second = float.Parse(second);
+                                temp.Skill = skill;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        var task2 = Task.Run(async () =>
+        {
+            var result = await Blaze2788Pro.GetPlayerStatCategory(pidListStr);
+            if (result != null)
+            {
+                var jsonObject = JsonNode.Parse(result);
+
+                var STAT = jsonObject["KSSV"]["No_Scope_Defined"]["STAT"];
+                if (STAT is JsonArray stats)
+                {
+                    for (int i = 0; i < stats.Count; i++)
+                    {
+                        var stat = stats[i];
+
+                        var pid = stat["EID"].GetValue<long>();
+
+                        var STAT2 = stat["STAT"];
+                        if (STAT2 is JsonArray stats2)
+                        {
+                            var wins = stats2[362].GetValue<string>();
+                            var loses = stats2[363].GetValue<string>();
+                            var kills = stats2[426].GetValue<string>();
+                            var kd = stats2[427].GetValue<string>();
+
+                            var temp = tempList.Find(x => x.PID == pid);
+                            if (temp != null)
+                            {
+                                temp.Wins = float.Parse(wins);
+                                temp.Loses = float.Parse(loses);
+                                temp.Kills = float.Parse(kills);
+                                temp.KD = kd;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        await Task.WhenAll(task1, task2);
+
+        tempList.ForEach(temp =>
+        {
+            var player = allPlayers.Find(x => x.PID == temp.PID);
+            if (player != null)
+            {
+                player.LifeTime = PlayerUtil.GetPlayTimeStrBySecond(temp.Second);
+                player.LifeSkill = temp.Skill;
+                player.LifeWinPer = $"{PlayerUtil.GetPlayerPercent(temp.Wins, temp.Wins + temp.Loses):0}%";
+                player.LifeKD = temp.KD;
+
+                var minutes = PlayerUtil.GetPlayMinutesBySecond(temp.Second);
+                if (minutes != 0)
+                    player.LifeKPM = $"{temp.Kills / minutes:0.00}";
+                else
+                    player.LifeKPM = $"0.00";
+            }
+        });
     }
 }

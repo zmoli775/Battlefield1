@@ -246,20 +246,42 @@
                                 FontSize="14"
                                 Text="{Binding Name}" />
                         </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="0,0,10,0"
+                            Orientation="Horizontal">
                             <TextBlock
-                                Width="60"
+                                Width="65"
+                                VerticalAlignment="Center"
+                                Text="{Binding LifeTime}"
+                                TextAlignment="Right" />
+                            <TextBlock
+                                Width="35"
+                                VerticalAlignment="Center"
+                                Text="{Binding LifeWinPer}"
+                                TextAlignment="Right" />
+                            <TextBlock
+                                Width="40"
+                                VerticalAlignment="Center"
+                                Text="{Binding LifeKD}"
+                                TextAlignment="Right" />
+                            <TextBlock
+                                Width="40"
+                                VerticalAlignment="Center"
+                                Text="{Binding LifeKPM}"
+                                TextAlignment="Right" />
+                            <TextBlock
+                                Width="35"
                                 VerticalAlignment="Center"
                                 Text="{Binding Language}"
                                 TextAlignment="Right" />
                             <TextBlock
-                                Width="60"
+                                Width="55"
                                 VerticalAlignment="Center"
                                 Text="{Binding PlayTime, StringFormat='{}{0} 分鍾'}"
                                 TextAlignment="Right" />
                             <TextBlock
-                                Width="50"
-                                Margin="0,0,10,0"
+                                Width="55"
                                 VerticalAlignment="Center"
                                 Text="{Binding Latency, StringFormat='{}{0} ms'}"
                                 TextAlignment="Right" />

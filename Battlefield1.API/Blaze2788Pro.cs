@@ -15,7 +15,7 @@ public static class Blaze2788Pro
 
         var options = new RestClientOptions(_host)
         {
-            MaxTimeout = 5000,
+            MaxTimeout = 10000,
             ThrowOnAnyError = false,
             ThrowOnDeserializationError = false
         };
