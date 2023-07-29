@@ -29,6 +29,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Assets\Images\Card\01.png" />
+      <None Remove="Assets\Images\Card\02.png" />
       <None Remove="Assets\Images\Ping\ping-bad.png" />
       <None Remove="Assets\Images\Ping\ping-best.png" />
       <None Remove="Assets\Images\Ping\ping-good.png" />
@@ -54,6 +56,8 @@
         <Resource Include="Assets\Images\BGLoop\MP_Harbor.jpg" />
         <Resource Include="Assets\Images\BGLoop\MP_Naval.jpg" />
         <Resource Include="Assets\Images\BGLoop\MP_Ridge.jpg" />
+        <Resource Include="Assets\Images\Card\01.png" />
+        <Resource Include="Assets\Images\Card\02.png" />
         <Resource Include="Assets\Images\Country\ad.png" />
         <Resource Include="Assets\Images\Country\ae.png" />
         <Resource Include="Assets\Images\Country\af.png" />

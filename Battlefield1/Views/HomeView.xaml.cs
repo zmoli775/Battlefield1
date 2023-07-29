@@ -1,28 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using Battlefield1.Utils;
+using Battlefield1.Helpers;
 
-namespace Battlefield1.Views
+namespace Battlefield1.Views;
+
+/// <summary>
+/// HomeView.xaml 的交互逻辑
+/// </summary>
+public partial class HomeView : UserControl
 {
-    /// <summary>
-    /// HomeView.xaml 的交互逻辑
-    /// </summary>
-    public partial class HomeView : UserControl
+    public HomeView()
     {
-        public HomeView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        TextBlock_WelcomeMsg.Text = $"{Dns.GetHostName()}，快樂{MiscUtil.GetWeekName()}。新的每週勛章在等著您。";
+    }
+
+    private void Button_VisitGitHub_Click(object sender, RoutedEventArgs e)
+    {
+        ProcessHelper.OpenLink("https://github.com/CrazyZhang666/Battlefield1");
     }
 }

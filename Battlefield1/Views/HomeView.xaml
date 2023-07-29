@@ -5,12 +5,33 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://bf1.battlefield.vip/ui/2023/xaml"
-    d:Background="#4C4A48"
     d:Height="720"
     d:Width="1280"
     DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
     mc:Ignorable="d">
 
-    <Grid />
+    <StackPanel>
+        <TextBlock
+            x:Name="TextBlock_WelcomeMsg"
+            Margin="0,0,0,10"
+            FontSize="20"
+            Text="戰地風雲1，歡迎語。" />
+        <WrapPanel>
+            <ui:CardButton Title="程序簡介" Image="/Assets/Images/Card/01.png">
+                <ui:CardButton.Description>
+                    玩家可以在不進入服務器的情況下，查詢任意服務器玩家列表，提前了解服務器大致情況
+                </ui:CardButton.Description>
+            </ui:CardButton>
+            <ui:CardButton
+                x:Name="Button_VisitGitHub"
+                Title="開源地址"
+                Click="Button_VisitGitHub_Click"
+                Image="/Assets/Images/Card/02.png">
+                <ui:CardButton.Description>
+                    https://github.com/CrazyZhang666/Battlefield1
+                </ui:CardButton.Description>
+            </ui:CardButton>
+        </WrapPanel>
+    </StackPanel>
 
 </UserControl>

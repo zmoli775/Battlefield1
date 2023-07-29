@@ -17,6 +17,7 @@
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/Button.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/CheckBox.xaml" />
 
+        <ResourceDictionary Source="/Battlefield1.UI;component/Styles/CardButton.xaml" />
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/TextBoxHint.xaml" />
 
         <ResourceDictionary Source="/Battlefield1.UI;component/Styles/ListBox.xaml" />
